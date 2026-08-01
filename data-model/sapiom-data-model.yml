@@ -1,0 +1,66 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.sapiom.ai/api-reference/endpoints/* + https://docs.sapiom.ai/reference/concepts
+notes: >-
+  Entity-relationship graph derived from the documented REST endpoints and Concepts page
+  (no downloadable OpenAPI is published, so relationships are read from documented request/
+  response fields and id-reference names, not from $ref links). Sapiom's domain is metered
+  access + payment authorization: agents run, incur transactions against third-party
+  services, and are constrained by spending rules within a tenant.
+entities:
+- name: Tenant
+  description: The account/organization that owns agents, rules, and transactions (tenantId on records).
+- name: Agent
+  id_field: agentId
+  description: An AI-powered application that connects to services and has its own tracking and spend limits.
+  endpoints: ['POST /v1/agents', 'GET /v1/agents', 'GET /v1/agents/{id}', 'PATCH /v1/agents/{id}']
+- name: Service
+  id_field: serviceId
+  key_field: serviceName
+  description: A third-party API an agent uses (e.g. openai, anthropic); Sapiom meters calls and costs per service.
+- name: Rule
+  id_field: ruleId
+  description: A spending/usage limit or control applied to agents (spend limits per run/day/week/month, usage limits).
+  endpoints: ['POST /v1/spending-rules', 'GET /v1/spending-rules', 'GET /v1/spending-rules/{id}', 'PUT /v1/spending-rules/{ruleId}']
+- name: Transaction
+  id_field: transactionId
+  description: A metered/authorized unit of work an agent performs against a service, carrying qualifiers, costs, facts, and status.
+  endpoints: ['POST /v1/transactions', 'GET /v1/transactions', 'GET /v1/transactions/{transactionId}', 'POST /v1/transactions/{transactionId}/complete', 'POST /v1/transactions/{transactionId}/reauthorize']
+- name: Cost
+  description: A fiat cost line attached to a transaction (fiatAmount, fiatAssetSymbol, isEstimate, costDetails).
+  endpoints: ['GET /v1/transactions/{transactionId}/costs', 'POST /v1/transactions/{transactionId}/costs']
+- name: Fact
+  description: Request/usage facts attached to a transaction for metering (requestFacts).
+  endpoints: ['POST /v1/transactions/{transactionId}/facts']
+- name: Verification
+  description: A one-time phone verification (send/check codes).
+  endpoints: ['POST /v1/services/verify/send', 'POST /v1/services/verify/check']
+relationships:
+- from: Agent
+  to: Tenant
+  type: belongs_to
+  via: tenantId
+- from: Transaction
+  to: Agent
+  type: belongs_to
+  via: agentId
+- from: Transaction
+  to: Service
+  type: belongs_to
+  via: serviceName
+- from: Transaction
+  to: Cost
+  type: has_many
+  via: costs
+- from: Transaction
+  to: Fact
+  type: has_many
+  via: requestFacts
+- from: Rule
+  to: Agent
+  type: applies_to
+  via: agentId
+- from: Transaction
+  to: Rule
+  type: filtered_by
+  via: filter[rule]

@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/api-reference/introduction.md + https://api.sapiom.ai/v1/mcp
+notes: >-
+  Versioning is URI-path (/v1). No public dated changelog page, deprecation policy, SLA,
+  or hosted status page was found at the time of enrichment (status.sapiom.ai does not
+  resolve; sapiom.statuspage.io redirects to the Statuspage marketing site, i.e. no
+  provisioned page). Package versions are tracked on npm (@sapiom org). No StatusPage or
+  Deprecation pointer is emitted because neither surface is published.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.sapiom.ai/v1
+  docs: https://docs.sapiom.ai/api-reference/introduction
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

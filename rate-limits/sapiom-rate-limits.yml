@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/api-reference/introduction.md
+notes: >-
+  Rate limits published verbatim in the REST API introduction. Two documented tiers by
+  endpoint class. Signalling headers are not documented; a 429 is returned on exceed.
+rate_limits:
+- name: standard
+  scope: standard endpoints
+  limit_count: 100
+  window: 1m
+  description: 100 requests per minute for standard endpoints.
+- name: transaction-queries
+  scope: transaction query endpoints
+  limit_count: 1000
+  window: 1m
+  description: 1000 requests per minute for transaction queries.

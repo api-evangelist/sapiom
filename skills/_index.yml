@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sapiom/skills
+notes: >-
+  Provider-published Agent Skills, saved verbatim from the sapiom/skills GitHub repo
+  (agentskills.io format; each file keeps its original frontmatter). Install via
+  `npx skills add sapiom/skills --skill <name>` or the Claude Code plugin
+  (`/plugin marketplace add sapiom/sapiom-js` then `/plugin install sapiom`).
+skills:
+- file: sapiom-use-sapiom.md
+  name: use-sapiom
+  description: Access ~97 cloud-service tools via the Sapiom remote MCP server (scrape, compute, store, search, LLMs, images, audio, messaging, governance).
+  source: https://github.com/sapiom/skills/blob/main/skills/use-sapiom/SKILL.md
+- file: sapiom-agent-builder.md
+  name: sapiom-agent-builder
+  description: Build and deploy autonomous agents — scheduled scripts that call LLMs, scrape, store data, and act without user intervention.
+  source: https://github.com/sapiom/skills/blob/main/skills/sapiom-agent-builder/SKILL.md
+- file: sapiom-deploy.md
+  name: sapiom-deploy
+  description: Deploy and run code on Sapiom — scheduled jobs, batch execution, and sandboxes.
+  source: https://github.com/sapiom/skills/blob/main/skills/sapiom-deploy/SKILL.md

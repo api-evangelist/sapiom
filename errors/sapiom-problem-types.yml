@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/api-reference/introduction.md
+format: custom
+notes: >-
+  Sapiom's REST API does NOT use RFC 9457 problem+json. Errors return a custom envelope
+  with an HTTP status code plus a machine-readable `error.code` and human-readable
+  `error.message`. Sapiom is a metered-access / payment-authorization API, so HTTP 402
+  (Payment Required, x402) is a first-class response on capability calls. The status
+  codes below are the documented set; individual error.code strings are returned at
+  call time and are not enumerated in a public registry.
+envelope:
+  success: '{ "data": { ... }, "status": "success" }'
+  error: '{ "error": { "code": "error_code", "message": "Human readable error message" }, "status": "error" }'
+problems:
+- status: 400
+  code_family: bad_request
+  title: Bad Request
+  meaning: Malformed request body or invalid parameters.
+- status: 401
+  code_family: unauthorized
+  title: Unauthorized
+  meaning: Missing or invalid Bearer token / API key.
+- status: 402
+  code_family: payment_required
+  title: Payment Required
+  meaning: The capability call requires payment/authorization; handled automatically by the SDK HTTP clients via the x402 flow, or by reauthorizing the transaction with payment data.
+- status: 403
+  code_family: forbidden
+  title: Forbidden
+  meaning: Authenticated but the token/agent is not permitted (e.g. blocked by a spending rule).
+- status: 404
+  code_family: not_found
+  title: Not Found
+  meaning: The requested resource (agent, transaction, rule) does not exist.
+- status: 429
+  code_family: rate_limited
+  title: Too Many Requests
+  meaning: Rate limit exceeded (100/min standard, 1000/min for transaction queries). See rate-limits/.
+- status: 500
+  code_family: internal_server_error
+  title: Internal Server Error
+  meaning: Unexpected server-side error.

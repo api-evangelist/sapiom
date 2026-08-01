@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/package/@sapiom/cli + https://docs.sapiom.ai/agents/quick-start
+notes: >-
+  Sapiom ships a first-party CLI (@sapiom/cli) for scaffolding, validating, and shipping
+  Sapiom agent orchestrations. Much of the same surface is also exposed through the local
+  authoring MCP (@sapiom/mcp, catalogued in mcp/). The @sapiom/harness package launches a
+  local web app that wires the CLI/MCP into a coding agent.
+cli:
+  name: sapiom
+  package: "@sapiom/cli"
+  install:
+  - npm install -g @sapiom/cli
+  - npx @sapiom/cli
+  description: Scaffold, validate, and ship Sapiom orchestrations.
+  command_families:
+  - name: scaffold
+    description: Initialize a new agent/orchestration project.
+  - name: check / validate
+    description: Bundle and validate the step graph before deploy.
+  - name: deploy
+    description: Build and deploy an agent to the Sapiom cloud.
+  - name: run
+    description: Start a billed cloud execution (run-local is free with stubbed capabilities).
+  - name: inspect
+    description: Monitor running or completed executions.
+  - name: schedule
+    description: Create/inspect/cancel cron or one-time schedules.
+related:
+  harness: "@sapiom/harness — CLI-launched local web app (MCP pre-wired, one-click deploy/run)."

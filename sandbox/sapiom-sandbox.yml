@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/agents/reference + https://docs.sapiom.ai/agents/quick-start
+notes: >-
+  Sapiom's test/live separation is execution-based, not test-key/test-card based. Agents
+  run locally with STUBBED capabilities for free before any billed cloud run. There are no
+  published magic test values or test card numbers (Sapiom is a metered access/payment
+  gateway, not a card acquirer). Capability-level "sandboxes" are a separate product
+  (provisioned compute instances), not an API test mode.
+test_vs_live:
+  local_free_mode:
+    tool: sapiom_dev_agents_run_local
+    billed: false
+    description: Runs the agent locally with stub capabilities — the free, side-effect-free way to exercise a step graph before deploying.
+  billed_cloud_mode:
+    tool: sapiom_dev_agents_run
+    billed: true
+    description: Starts a real, billed cloud execution. The billed unit is the execution (run), not the build/check.
+  validation:
+    tool: sapiom_dev_agents_check
+    billed: false
+    description: Bundles index.ts, derives the manifest, and validates the step graph without executing.
+compute_sandboxes:
+  capability: compute
+  description: Separately, the Compute capability provisions persistent sandbox instances (ports + filesystem) via sapiom_dev_sandbox_* tools and the @sapiom/sandbox package — a product surface, not a test-mode.
+magic_test_values: none-published

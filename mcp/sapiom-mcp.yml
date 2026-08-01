@@ -1,0 +1,78 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.sapiom.ai/integration/mcp-servers/remote.md + https://docs.sapiom.ai/llms.txt
+notes: >-
+  Sapiom ships TWO MCP servers. (1) The REMOTE capability MCP is hosted at
+  https://api.sapiom.ai/v1/mcp and exposes ~130 sapiom_* capability tools plus a
+  tool_discover meta-tool; it is OAuth 2.0 protected (see well-known/). (2) The LOCAL
+  authoring MCP (@sapiom/mcp) is an unmetered developer surface that scaffolds, tests,
+  deploys, and inspects agent orchestrations. The published skills report ~97 tools on
+  the remote server; docs/llms.txt report 130 — the exact count is discovered at
+  runtime via tool_discover.
+servers:
+- name: sapiom-remote
+  kind: remote-capability
+  transport: http
+  url: https://api.sapiom.ai/v1/mcp
+  auth: oauth2 (RFC 9728 protected resource; bearer token)
+  install: claude mcp add sapiom --transport http https://api.sapiom.ai/v1/mcp
+  tool_count: ~130
+  meta_tools:
+  - name: tool_discover
+    description: Describe your goal and get back ranked sapiom_* tools with usage examples.
+  tool_families:
+  - ai models (chat, reasoning, embeddings across 400+ models)
+  - web search and scraping
+  - browser automation
+  - image and video generation
+  - audio / text-to-speech
+  - compute sandboxes and jobs
+  - data stores (Postgres, Redis, vector, full-text search)
+  - messaging / queues / schedules
+  - file storage (presigned URLs)
+  - repositories and GitHub export
+  - email and enrichment
+  - domains and DNS
+  - phone verification
+- name: sapiom-dev
+  kind: local-authoring
+  transport: stdio
+  package: "@sapiom/mcp"
+  install: npx -y @sapiom/mcp
+  billed: false
+  tools:
+  - name: sapiom_authenticate
+    description: Browser-based login; caches the credential in ~/.sapiom/credentials.json.
+  - name: sapiom_status
+    description: Reports environment and authentication state.
+  - name: sapiom_logout
+    description: Clears cached credentials.
+  - name: sapiom_dev_agents_scaffold
+    description: Initialize a new agent project.
+  - name: sapiom_dev_agents_check
+    description: Bundle index.ts, derive the manifest, and validate the step graph.
+  - name: sapiom_dev_agents_run_local
+    description: Run the agent locally with stub capabilities (free).
+  - name: sapiom_dev_agents_link
+    description: Resolve or create the hosted agent definition.
+  - name: sapiom_dev_agents_deploy
+    description: Build and deploy the agent to the cloud.
+  - name: sapiom_dev_agents_run
+    description: Start a real, billed cloud execution.
+  - name: sapiom_dev_agents_inspect
+    description: Monitor running or completed executions.
+  - name: sapiom_dev_agents_signal
+    description: Resume a paused execution.
+  - name: sapiom_dev_agents_schedule
+    description: Create a cron or one-time schedule.
+  - name: sapiom_dev_agents_schedule_inspect
+    description: View schedule configurations.
+  - name: sapiom_dev_agents_schedule_cancel
+    description: Cancel a schedule.
+  - name: sapiom_dev_sandbox_configure
+    description: Configure a web-app sandbox preview.
+  - name: sapiom_dev_sandbox_check
+    description: Check the sandbox preview configuration.
+  - name: sapiom_dev_sandbox_preview
+    description: Deploy a web-app preview to a live URL.

@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/api-reference/introduction.md + https://docs.sapiom.ai/integration/sdk.md + well-known/sapiom-oauth-authorization-server.json
+docs: https://docs.sapiom.ai/api-reference/introduction
+summary:
+  types: [http, oauth2]
+  api_key_in: [header]
+  http_scheme: bearer
+  oauth2_flows: [authorizationCode, deviceCode, refreshToken]
+schemes:
+- name: BearerApiKey
+  type: http
+  scheme: bearer
+  description: >-
+    All REST API endpoints authenticate with a Bearer token: `Authorization: Bearer YOUR_API_KEY`.
+    Keys are minted in the Sapiom Dashboard (https://app.sapiom.ai/settings) and read from the
+    SAPIOM_API_KEY environment variable by the SDKs. Attribution (agentName) is set on the client
+    to route spend to per-agent transaction history and spending rules.
+  sources: [https://docs.sapiom.ai/api-reference/introduction]
+- name: OAuth2
+  type: oauth2
+  description: >-
+    The remote MCP resource (https://api.sapiom.ai/v1/mcp) is guarded by OAuth 2.0 with
+    Protected Resource Metadata (RFC 9728) and Authorization Server Metadata (RFC 8414).
+    Supports PKCE (S256), Dynamic Client Registration (RFC 7591), and the OAuth 2.0 Device
+    Authorization Grant. Token endpoint auth method is "none" (public clients).
+  issuer: https://api.sapiom.ai
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.sapiom.ai/v1/oauth/authorize
+    tokenUrl: https://api.sapiom.ai/v1/oauth/token
+    pkce: S256
+  - flow: deviceCode
+    tokenUrl: https://api.sapiom.ai/v1/oauth/token
+  - flow: refreshToken
+    tokenUrl: https://api.sapiom.ai/v1/oauth/token
+  registration_endpoint: https://api.sapiom.ai/v1/oauth/register
+  sources: [well-known/sapiom-oauth-authorization-server.json, well-known/sapiom-oauth-protected-resource.json]
+- name: DeveloperBrowserLogin
+  type: oauth2
+  description: >-
+    The local authoring MCP (@sapiom/mcp) uses sapiom_authenticate, a browser-based approval
+    flow that caches the credential at ~/.sapiom/credentials.json for subsequent tool calls.
+  sources: [https://docs.sapiom.ai/agents/reference]

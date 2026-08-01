@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/* across Sapiom hosts
+host: https://api.sapiom.ai
+documents:
+- path: /.well-known/oauth-authorization-server   # RFC 8414 — OAuth 2.0 Authorization Server Metadata
+  status: 200
+  file: sapiom-oauth-authorization-server.json
+- path: /.well-known/oauth-protected-resource      # RFC 9728 — OAuth 2.0 Protected Resource Metadata (guards the MCP resource)
+  status: 200
+  file: sapiom-oauth-protected-resource.json
+- path: /.well-known/sapiom-jwks.json              # JWKS for Sapiom payment/x402 token verification
+  status: 200
+  file: sapiom-jwks.json
+- path: /.well-known/security.txt                   # RFC 9116
+  status: 404
+- path: /.well-known/openid-configuration           # OIDC discovery (not an OIDC provider)
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+other_hosts_checked:
+- host: https://www.sapiom.ai
+  result: no /.well-known/* documents (all 404)
+- host: https://docs.sapiom.ai
+  result: no /.well-known/* documents (all 404)
+- host: https://app.sapiom.ai
+  result: no /.well-known/* documents (all 404)
+notes: >-
+  api.sapiom.ai advertises OAuth 2.0 Authorization Server metadata (RFC 8414) and
+  Protected Resource metadata (RFC 9728). The protected resource is the remote MCP
+  endpoint https://api.sapiom.ai/v1/mcp. A JWKS document is published for verifying
+  Sapiom payment (x402) tokens.

@@ -1,0 +1,94 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/org/sapiom + https://github.com/sapiom/sapiom-js
+notes: >-
+  Sapiom ships a TypeScript/JavaScript SDK family (the @sapiom npm org, monorepo at
+  github.com/sapiom/sapiom-js). All packages below are first-party. Python support is
+  documented as "Coming Soon". @sapiom/tools is the typed capability client (the same
+  surface agents call as ctx.sapiom.*); @sapiom/cli and @sapiom/mcp are catalogued
+  here as binaries but their command/tool surfaces live in cli/ and mcp/.
+packages:
+- language: javascript
+  registry: npm
+  name: "@sapiom/tools"
+  url: https://www.npmjs.com/package/@sapiom/tools
+  install: npm install @sapiom/tools
+  official: true
+  description: Typed client for Sapiom capabilities (sandboxes, repositories, agent, file storage, ...) — the same tools agents call over MCP, callable from your code.
+- language: javascript
+  registry: npm
+  name: "@sapiom/core"
+  url: https://www.npmjs.com/package/@sapiom/core
+  install: npm install @sapiom/core
+  official: true
+  description: Core SDK for the Sapiom API — transaction management and core utilities.
+- language: javascript
+  registry: npm
+  name: "@sapiom/agent"
+  url: https://www.npmjs.com/package/@sapiom/agent
+  install: npm install @sapiom/agent
+  official: true
+  description: Versioned public contract for authoring Sapiom agents (defineAgent/defineStep, directives, InMemoryContextStore).
+- language: javascript
+  registry: npm
+  name: "@sapiom/axios"
+  url: https://www.npmjs.com/package/@sapiom/axios
+  install: npm install @sapiom/axios
+  official: true
+  description: Axios integration for the Sapiom SDK — automatic HTTP 402 payment handling.
+- language: javascript
+  registry: npm
+  name: "@sapiom/fetch"
+  url: https://www.npmjs.com/package/@sapiom/fetch
+  install: npm install @sapiom/fetch
+  official: true
+  description: Fetch API integration for the Sapiom SDK.
+- language: javascript
+  registry: npm
+  name: "@sapiom/node-http"
+  url: https://www.npmjs.com/package/@sapiom/node-http
+  install: npm install @sapiom/node-http
+  official: true
+  description: Node.js http/https module integration for the Sapiom SDK.
+- language: javascript
+  registry: npm
+  name: "@sapiom/langchain"
+  url: https://www.npmjs.com/package/@sapiom/langchain
+  install: npm install @sapiom/langchain
+  official: true
+  description: LangChain v1.x integration for the Sapiom SDK.
+- language: javascript
+  registry: npm
+  name: "@sapiom/langchain-classic"
+  url: https://www.npmjs.com/package/@sapiom/langchain-classic
+  install: npm install @sapiom/langchain-classic
+  official: true
+  description: LangChain v0.x (legacy) integration for the Sapiom SDK.
+- language: javascript
+  registry: npm
+  name: "@sapiom/sandbox"
+  url: https://www.npmjs.com/package/@sapiom/sandbox
+  install: npm install @sapiom/sandbox
+  official: true
+  description: Sandbox environment management for the Sapiom SDK.
+- language: javascript
+  registry: npm
+  name: "@sapiom/cli"
+  url: https://www.npmjs.com/package/@sapiom/cli
+  install: npm install -g @sapiom/cli
+  official: true
+  description: The Sapiom command-line interface — scaffold, validate, and ship Sapiom orchestrations.
+- language: javascript
+  registry: npm
+  name: "@sapiom/mcp"
+  url: https://www.npmjs.com/package/@sapiom/mcp
+  install: npx -y @sapiom/mcp
+  official: true
+  description: Local Sapiom developer (authoring) MCP server — scaffold, test, deploy, and inspect agents.
+- language: javascript
+  registry: npm
+  name: "@sapiom/harness"
+  url: https://www.npmjs.com/package/@sapiom/harness
+  install: npx -y @sapiom/harness
+  official: true
+  description: CLI-launched local web app that runs your coding agent in a Sapiom-configured environment (MCP pre-wired, one-click deploy/run).

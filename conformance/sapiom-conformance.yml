@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: well-known/sapiom-oauth-authorization-server.json + https://docs.sapiom.ai/api-reference/introduction.md + https://docs.sapiom.ai/integration/http-clients.md
+notes: >-
+  Standards asserted from Sapiom's published discovery documents and REST API docs. These
+  are cross-cutting protocol conformance claims (evidence-backed), NOT a published
+  compliance/certification program — no SOC 2 / ISO 27001 / PCI / HIPAA claims were found,
+  so no `Compliance` pointer is emitted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server advertises authorization_code + device_code + refresh_token grants
+- id: rfc8414-as-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server present (OAuth 2.0 Authorization Server Metadata)
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: /.well-known/oauth-protected-resource guards the MCP resource https://api.sapiom.ai/v1/mcp
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint https://api.sapiom.ai/v1/oauth/register advertised
+- id: rfc8628-device-authorization-grant
+  conforms: true
+  evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:device_code
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: openid-connect
+  conforms: false
+  evidence: no /.well-known/openid-configuration (404); OAuth 2.0 only, not an OIDC provider
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: REST API authenticates via Authorization Bearer; protected-resource bearer_methods_supported=[header]
+- id: x402-payment-required
+  conforms: true
+  evidence: HTTP client integrations advertise automatic 402 handling; transactions/{id}/reauthorize accepts x402 payment data; JWKS published
+- id: mcp
+  conforms: true
+  evidence: hosted remote MCP server at https://api.sapiom.ai/v1/mcp + local authoring MCP (@sapiom/mcp)
+- id: jsonapi-query-conventions
+  conforms: partial
+  evidence: list endpoints use JSON:API-style sort, page[after]/page[before]/page[limit], and filter[...] query params (response envelope is custom {data,status}, not full JSON:API)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom {error:{code,message},status} envelope, not application/problem+json

@@ -1,0 +1,59 @@
+# Sapiom
+
+> Instant access to paid services for AI agents
+
+## MCP servers
+
+Sapiom ships two MCP servers, for two jobs:
+
+- **Authoring MCP** (`npx -y @sapiom/mcp`) — build, test & deploy agents. Install: `claude mcp add sapiom -- npx -y @sapiom/mcp`. Tools: `sapiom_authenticate`, `sapiom_status`, `sapiom_dev_agents_*`. Inside a step, capabilities are called via the typed `ctx.sapiom.*` client.
+- **Remote MCP** (`https://api.sapiom.ai/v1/mcp`) — call any capability directly, no agent. Install: `claude mcp add sapiom --transport http https://api.sapiom.ai/v1/mcp`. Tools: `sapiom_*` (130), plus `tool_discover` to find them.
+
+Build an agent (authoring MCP) for anything multi-step or scheduled; use the remote MCP or the SDK for a one-off call.
+
+## Docs
+
+- [Get Started](https://docs.sapiom.ai): Connect Sapiom to your coding agent, authenticate, and build your first agent in minutes
+
+### Capabilities
+- [AI Model Access](https://docs.sapiom.ai/capabilities/ai-models): Run 400+ AI models — chat, reasoning, embeddings — through one API, pay per token
+- [Audio Services](https://docs.sapiom.ai/capabilities/audio): Convert text to natural-sounding speech and generate sound effects from text
+- [Browser Automation](https://docs.sapiom.ai/capabilities/browser): Extract page content, capture screenshots, and drive long-lived cloud browser sessions
+- [Capabilities](https://docs.sapiom.ai/capabilities): The catalog of paid capabilities your agents and code can call, pay-per-use
+- [Compute](https://docs.sapiom.ai/capabilities/compute): Provision sandboxes, run code, and deploy jobs — tier-based per-second pricing, no infrastructure
+- [Data](https://docs.sapiom.ai/capabilities/data): Provision databases and data stores instantly — Postgres, Redis, vector, and full-text search
+- [Domains & DNS](https://docs.sapiom.ai/capabilities/domains): Search, register, and renew domains and manage their DNS — no registrar account
+- [Email & Enrichment](https://docs.sapiom.ai/capabilities/email-enrichment): Find and verify professional emails and enrich people and companies — pay per use
+- [File Storage](https://docs.sapiom.ai/capabilities/file-storage): Store and share files via short-lived presigned upload and download URLs
+- [Generate Images](https://docs.sapiom.ai/capabilities/images): Generate images from text prompts — plus img2img, upscaling, and video generation
+- [GitHub Export](https://docs.sapiom.ai/capabilities/github-export): Export a GitHub repository as a sanitized, secret-scanned archive — free
+- [Messaging](https://docs.sapiom.ai/capabilities/messaging): Publish async messages, enqueue jobs, and schedule cron deliveries — no queue infrastructure
+- [Repositories](https://docs.sapiom.ai/capabilities/repositories): Create private git repositories you clone and push to with your Sapiom API key
+- [Search the Web](https://docs.sapiom.ai/capabilities/search): Give your agents real-time web search — a synthesized answer plus supporting results
+- [Verify Users](https://docs.sapiom.ai/capabilities/verify): Send and check one-time phone verification codes — no vendor account
+- [Web Scraping](https://docs.sapiom.ai/capabilities/scraping): Read any page as clean markdown, crawl sites, and extract structured data — no browser infrastructure
+
+## Agents
+- [Authoring agents](https://docs.sapiom.ai/agents/authoring): The step model, control flow, failure handling, pause/resume, and determinism — everything past the Quickstart.
+- [Build Your First Agent](https://docs.sapiom.ai/agents/quick-start): From signup to a running agent execution in about five minutes — driven entirely from your coding agent.
+- [Example Templates](https://docs.sapiom.ai/agents/examples): Four runnable starting points covering the full spectrum of agent patterns — from a pure input-transform to a bounded fix loop with human escalation.
+- [SDK & API Reference](https://docs.sapiom.ai/agents/reference): Complete reference for the @sapiom/mcp agent lifecycle tools.
+- [Using Capabilities in Steps](https://docs.sapiom.ai/agents/capabilities): Call paid Sapiom capabilities from an agent step via the typed ctx.sapiom client — sandboxes, repositories, LLM models, sub-agents, file storage, image/video generation, web search & scraping, transactional email, domains, memory, and on-demand Postgres.
+
+## Integration
+
+- [Remote MCP Server](https://docs.sapiom.ai/integration/mcp-servers/remote)
+- [SDK & API](https://docs.sapiom.ai/integration/sdk)
+
+## Skill
+
+Install (Claude Code): `/plugin marketplace add sapiom/sapiom-js` then `/plugin install sapiom` — ships the sapiom-dev MCP and the sapiom-agent-authoring skill. Scaffolded projects include the skill automatically.
+
+## For Agents
+
+All documentation is available in markdown format by adding `.md` to any URL:
+
+- Index: https://docs.sapiom.ai/index.md
+- Example: https://docs.sapiom.ai/capabilities/verify.md
+
+Internal links in markdown files point to other `.md` files for easy navigation.

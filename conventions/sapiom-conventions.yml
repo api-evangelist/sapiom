@@ -1,0 +1,64 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sapiom.ai/api-reference/introduction.md + endpoint reference (/api-reference/endpoints/*) + https://docs.sapiom.ai/integration/sdk.md
+notes: >-
+  Cross-cutting request/response semantics for the Sapiom REST API (base
+  https://api.sapiom.ai/v1). Idempotency is NOT documented as a first-class contract
+  (no Idempotency-Key header); transactions carry a client-supplied traceExternalId used
+  for correlation/attribution, not documented as a dedup key — so no Idempotency pointer
+  is emitted.
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer YOUR_API_KEY'
+  env: SAPIOM_API_KEY
+  ref: authentication/sapiom-authentication.yml
+versioning:
+  style: uri-path
+  current: v1
+  ref: lifecycle/sapiom-lifecycle.yml
+pagination:
+  style: cursor
+  params:
+    cursor_after: page[after]
+    cursor_before: page[before]
+    limit: page[limit]
+    limit_max: 100
+  response_fields: [data]
+  notes: JSON:API-style bracketed query params.
+sorting:
+  param: sort
+  notes: Sort field; prefix with '-' for descending.
+filtering:
+  style: json:api-bracketed
+  params:
+  - 'filter[from_date]'
+  - 'filter[to_date]'
+  - 'filter[time_period]'
+  - 'filter[rule]'
+  - 'filter[agent]'
+  - 'filter[service]'
+  - 'filter[status]'
+response_envelope:
+  success: '{ data, status: "success" }'
+  error: '{ error: { code, message }, status: "error" }'
+  ref: errors/sapiom-problem-types.yml
+error_handling:
+  format: custom
+  ref: errors/sapiom-problem-types.yml
+metadata:
+  supported: true
+  fields: [metadata, qualifiers, requestFacts]
+  notes: Free-form metadata and qualifiers accepted on transaction creation.
+tracing_attribution:
+  fields: [traceId, traceExternalId, agentId, agentName]
+  attribution: Set attribution.agentName on the SDK client to route spend to per-agent history and spending rules.
+idempotency:
+  documented: false
+  notes: No Idempotency-Key contract published; traceExternalId is a client correlation id, not a documented dedup key.
+rate_limiting:
+  ref: rate-limits/sapiom-rate-limits.yml
+  standard: 100/min
+  transaction_queries: 1000/min
+payments:
+  protocol: x402 (HTTP 402 Payment Required)
+  notes: SDK HTTP clients auto-handle 402; transactions can be reauthorized with x402 payment data. JWKS at /.well-known/sapiom-jwks.json.

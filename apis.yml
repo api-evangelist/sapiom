@@ -1,7 +1,30 @@
 aid: sapiom
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sapiom.png
 name: Sapiom
-description: 'Sapiom is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Sapiom is an execution engine for AI agents that gives agents and code instant,
+  pay-per-use access to a catalog of paid capabilities through a single API key and
+  wallet — no per-vendor accounts. Capabilities include web search and scraping,
+  access to 400+ AI models, image/video generation, audio/text-to-speech, browser
+  automation, compute sandboxes, databases (Postgres/Redis/vector/search), messaging
+  and queues, file storage, private git repositories, GitHub export, email enrichment,
+  domains/DNS, and phone verification. It is reachable three ways: a typed SDK client
+  (@sapiom/tools / ctx.sapiom.*), a hosted remote MCP server (~130 tools), and a REST
+  API (https://api.sapiom.ai/v1) for transaction, agent, spending-rule, and analytics
+  management. Metered access is authorized via an x402 (HTTP 402) payment flow with
+  per-agent spend rules. Sapiom is backed by Accel.
 url: https://raw.githubusercontent.com/api-evangelist/sapiom/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,16 +34,100 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai
-apis: []
+- AI Agents
+- Agent Infrastructure
+- Model Context Protocol
+- API Gateway
+- Payments
+- Agentic Commerce
+- Developer Tools
+- SDK
+apis:
+- name: Sapiom REST API
+  description: >-
+    REST API for transaction management, payment authorization, agents, spending rules,
+    analytics, and phone verification. Bearer-token authenticated; JSON envelope with
+    cursor pagination.
+  humanURL: https://docs.sapiom.ai/api-reference/introduction
+  baseURL: https://api.sapiom.ai/v1
+  tags:
+  - Agents
+  - Transactions
+  - Payments
+  - Analytics
+  properties:
+  - type: Documentation
+    url: https://docs.sapiom.ai/api-reference/introduction
+  - type: APIReference
+    url: https://docs.sapiom.ai/api-reference/endpoints
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
 common:
 - type: Website
   url: https://www.sapiom.ai/
+- type: DeveloperPortal
+  url: https://docs.sapiom.ai/
+- type: Documentation
+  url: https://docs.sapiom.ai/
+- type: APIReference
+  url: https://docs.sapiom.ai/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.sapiom.ai/agents/quick-start
+- type: Blog
+  url: https://www.sapiom.ai/blog
+- type: GitHubOrganization
+  url: https://github.com/sapiom
+- type: SignUp
+  url: https://app.sapiom.ai/login
+- type: Login
+  url: https://app.sapiom.ai/login
+- type: Support
+  url: https://www.sapiom.ai/contact
+- type: TermsOfService
+  url: https://docs.sapiom.ai/terms-of-use
+- type: PrivacyPolicy
+  url: https://docs.sapiom.ai/privacy-policy
+- type: LLMsTxt
+  url: llms/sapiom-llms.txt
+- type: MCPServer
+  url: mcp/sapiom-mcp.yml
+- type: Packages
+  url: packages/sapiom-packages.yml
+- type: SDKs
+  url: packages/sapiom-packages.yml
+- type: CLI
+  url: cli/sapiom-cli.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/sapiom-well-known.yml
+- type: Authentication
+  url: authentication/sapiom-authentication.yml
+- type: Conventions
+  url: conventions/sapiom-conventions.yml
+- type: ErrorCatalog
+  url: errors/sapiom-problem-types.yml
+- type: RateLimits
+  url: rate-limits/sapiom-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/sapiom-lifecycle.yml
+- type: Conformance
+  url: conformance/sapiom-conformance.yml
+- type: DomainSecurity
+  url: security/sapiom-domain-security.yml
+- type: Sandbox
+  url: sandbox/sapiom-sandbox.yml
+- type: DataModel
+  url: data-model/sapiom-data-model.yml
