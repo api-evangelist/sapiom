@@ -2,14 +2,11 @@ generated: '2026-07-21'
 method: searched
 status: published
 source: https://docs.sapiom.ai/integration/mcp-servers/remote.md + https://docs.sapiom.ai/llms.txt
-notes: >-
-  Sapiom ships TWO MCP servers. (1) The REMOTE capability MCP is hosted at
-  https://api.sapiom.ai/v1/mcp and exposes ~130 sapiom_* capability tools plus a
-  tool_discover meta-tool; it is OAuth 2.0 protected (see well-known/). (2) The LOCAL
-  authoring MCP (@sapiom/mcp) is an unmetered developer surface that scaffolds, tests,
-  deploys, and inspects agent orchestrations. The published skills report ~97 tools on
-  the remote server; docs/llms.txt report 130 — the exact count is discovered at
-  runtime via tool_discover.
+notes: Sapiom ships TWO MCP servers. (1) The REMOTE capability MCP is hosted at https://api.sapiom.ai/v1/mcp
+  and exposes ~130 sapiom_* capability tools plus a tool_discover meta-tool; it is OAuth 2.0 protected
+  (see well-known/). (2) The LOCAL authoring MCP (@sapiom/mcp) is an unmetered developer surface that
+  scaffolds, tests, deploys, and inspects agent orchestrations. The published skills report ~97 tools
+  on the remote server; docs/llms.txt report 130 — the exact count is discovered at runtime via tool_discover.
 servers:
 - name: sapiom-remote
   kind: remote-capability
@@ -38,7 +35,7 @@ servers:
 - name: sapiom-dev
   kind: local-authoring
   transport: stdio
-  package: "@sapiom/mcp"
+  package: '@sapiom/mcp'
   install: npx -y @sapiom/mcp
   billed: false
   tools:
@@ -76,3 +73,10 @@ servers:
     description: Check the sandbox preview configuration.
   - name: sapiom_dev_sandbox_preview
     description: Deploy a web-app preview to a live URL.
+deployment:
+  mode: remote
+  endpoint: https://api.sapiom.ai/v1/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
