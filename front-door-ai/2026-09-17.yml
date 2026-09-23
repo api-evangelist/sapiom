@@ -1,0 +1,34 @@
+# Front Door AI Index — sapiom — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: sapiom
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.sapiom.ai
+  final_host: www.sapiom.ai
+  ownership: own
+  owner: sapiom
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 19
+  host_score: 19
+  density: 23.03
+  words: 825
+  tiers:
+    agentic: 8
+    core: 4
+    model: 7
+  ambiguous: 36
+  top_terms:
+    agent: 35
+    MCP: 5
+    AI: 4
+    Claude: 3
+    OpenAI: 3
+    AI agent: 1
+    ChatGPT: 1
+    agentic: 1
+    inference: 1
+    smart: 1
