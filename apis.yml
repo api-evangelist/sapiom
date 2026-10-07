@@ -102,6 +102,10 @@ x-enrichment:
   artifacts_added: 21
   pass: local-v1
 common:
+- type: Pricing
+  url: https://www.sapiom.ai/
+- type: Plans
+  url: plans/sapiom-plans-pricing.yml
 - type: Website
   url: https://www.sapiom.ai/
 - type: DeveloperPortal
