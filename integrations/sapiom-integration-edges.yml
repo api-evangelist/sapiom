@@ -30,7 +30,124 @@ edges:
   - remote-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@sapiom/agent
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@sapiom/agent'
+      version: 0.14.9
+      released: '2026-10-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/agent
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/axios'
+      version: 0.5.1
+      released: '2026-08-04'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/axios
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/cli'
+      version: 21.0.0
+      released: '2026-10-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/cli
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/core'
+      version: 0.5.0
+      released: '2026-08-04'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/core
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/fetch'
+      version: 0.5.0
+      released: '2026-08-04'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/fetch
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/harness'
+      version: 0.22.0
+      released: '2026-10-09'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/harness
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/node-http'
+      version: 0.4.1
+      released: '2026-08-04'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/node-http
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/sandbox'
+      version: 0.8.5
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/sandbox
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    - name: '@sapiom/tools'
+      version: 0.45.0
+      released: '2026-10-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@sapiom/tools
+      repo_leg: github-org:sapiom
+      publisher_leg: email:sapiom.ai
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 generated: '2026-10-14'
 method: searched
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
+source:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
